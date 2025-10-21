@@ -25,8 +25,6 @@ conn = psycopg2.connect(host="cc3201.dcc.uchile.cl", user="cc3201", database="cc
 
 cur = conn.cursor()
 
-# cur.execute(";")
-
 # Implementación de la lógica de lectura de un archivo csv.
 with open('<path_to_file>') as csvfile:
     reader = csv.reader(csvfile, delimiter=',', quotechar='"')
