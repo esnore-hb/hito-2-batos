@@ -1,4 +1,4 @@
-create table tindanime.Anime(
+create table Anime(
     id_anime int primary key,
     titulo varchar(255) ,
     sinopsis varchar(512),
@@ -11,50 +11,50 @@ create table tindanime.Anime(
     puntuacion_anime double precision default 0
 )
 
-create table tindanime.Genero(
+create table Genero(
     categoria varchar(64) primary key
 )
 
-create table tindanime.Tipo(
+create table Tipo(
     id_anime int,
     categoria varchar(64)
-    foreign key id_anime references tindanime.Anime(id_anime),
-    foreign key categoria references tindanime.Genero(categoria)
+    foreign key id_anime references Anime(id_anime),
+    foreign key categoria references Genero(categoria)
 )
 
-create table tindanime.Usuario(
+create table Usuario(
     nombre_perfil varchar(255) primary key not null,
     genero_perfil varchar(1) check 'F' 'M',
     cumpleanhos varchar(8)
 )
 
-create table tindanime.Favoritos(
+create table Favoritos(
     nombre_perfil varchar(255),
     id_anime int,
-    foreign key nombre_perfil references tindanime.Usuario(nombre_perfil),
-    foreign key id_anime references tindanime.Anime(id_anime)
+    foreign key nombre_perfil references Usuario(nombre_perfil),
+    foreign key id_anime references Anime(id_anime)
 )
 
-create table tindanime.Reviews(
+create table Reviews(
     id_review int not null primary key,
     puntuacion double precision default 0,
 )
 
-create table tindanime.Recibe(
+create table Recibe(
     id_anime int,
     id_review int,
-    foreign key id_anime references tindanime.Anime(id_anime),
-    foreign key id_review references tindanime.Reviews(id_review)
+    foreign key id_anime references Anime(id_anime),
+    foreign key id_review references Reviews(id_review)
 )
 
-create table tindanime.Escribe(
+create table Escribe(
     id_review int not null,
     nombre_perfil varchar(255),
-    foreign key id_anime references tindanime.Reviews(id_review),
-    foreign key nombre_perfil references tindanime.Reviews(nombre_perfil)
+    foreign key id_anime references Reviews(id_review),
+    foreign key nombre_perfil references Reviews(nombre_perfil)
 )
 
-create table tindanime.Calificacion(
+create table Calificacion(
     nombre varchar(64) primary key,
     valor int default 0,
     id_review int not null,

@@ -8,9 +8,9 @@ Integrantes:
 - Beatriz Toledo
 - Hector Bonilla
 - Lazaro Narvaez
-
-
 """
+
+
 # Modifique este metodo para adaptarlo a su lógica.
 def findOrInsert(table, name):
     cur.execute("select id from "+table+" where name=%s limit 1", [name])
@@ -33,7 +33,8 @@ with open('<path_to_file>') as csvfile:
         i+=1
         if i==1:
             continue
-
+        
+        
         # Your logic here
 
 conn.commit()
