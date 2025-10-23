@@ -24,7 +24,7 @@ create table Tipo(
 
 create table Usuario(
     nombre_perfil varchar(255) primary key not null,
-    genero_perfil varchar(1) check 'F' 'M',
+    genero_perfil varchar(1),
     cumpleanhos varchar(8)
 )
 

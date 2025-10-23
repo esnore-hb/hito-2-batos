@@ -34,8 +34,23 @@ with open("/data/animes.csv") as csvfile:
         if i==1:
             continue
         
+        # uid 0 ,title 1,synopsis 2,genre 3,aired 4,episodes 5,members,popularity,ranked,score,img_url,link
+        anime_id = int(row[0].strip().strip('"').strip('\''))
+
+        titulo = row[1].strip().strip('"').strip('\'')
+
+        sinopsis = row[2].strip().strip('"').strip('\'')
+
+        intervalo_emision = row[3].strip().strip('"').split("to")
+        for i in range(len(intervalo_emision)):
+            intervalo_emision[i] = intervalo_emision[i].strip()
+
+        inicio_emision = intervalo_emision[0]
+        termino_emision = "hoy"
+
         
-        # Your logic here
+
+        
 
 conn.commit()
 conn.close()
