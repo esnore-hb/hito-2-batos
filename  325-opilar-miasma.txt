@@ -1,0 +1,14 @@
+ssh -l cc3201 -p 325 cc3201.dcc.uchile.cl
+psql cc3201
+
+
+send files:
+scp -P 323 local.txt cc3201@cc3201.dcc.uchile.cl:/home/cc3201
+
+download files
+scp -P 323 c3201@cc3201.dcc.uchile.cl:/home/cc3201/remote.txt /local/carpeta/
+
+------------------------------------------------------------------------------------------------------------------------
+https://wiki.dcc.uchile.cl/cc3201/doku.php?id=proyecto:acceso_al_servidor
+https://wiki.dcc.uchile.cl/cc3201/doku.php?id=proyecto:configurar_postgres
+https://wiki.dcc.uchile.cl/cc3201/doku.php?id=proyecto:conexion_externa
