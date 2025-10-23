@@ -21,12 +21,12 @@ def findOrInsert(table, name):
         return cur.fetchone()[0]
 
 # Establecer conexion con la base de datos
-conn = psycopg2.connect(host="cc3201.dcc.uchile.cl", user="cc3201", database="cc3201", password="j'<3_cc3201", port="5440")
+conn = psycopg2.connect(host="cc3201.dcc.uchile.cl", user="cc3201", database="cc3201", password="opilar miasma", port="5525")
 
 cur = conn.cursor()
 
 # Implementación de la lógica de lectura de un archivo csv.
-with open('<path_to_file>') as csvfile:
+with open("/data/animes.csv") as csvfile:
     reader = csv.reader(csvfile, delimiter=',', quotechar='"')
     i = 0
     for row in reader:
