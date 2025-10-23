@@ -25,7 +25,13 @@ conn = psycopg2.connect(host="cc3201.dcc.uchile.cl", user="cc3201", database="cc
 
 cur = conn.cursor()
 
-# Implementación de la lógica de lectura de un archivo csv.
+# ----------------------------
+# Reiniciar las tablas
+# ----------------------------
+#cur.execute("TRUNCATE tindanime * RESTART IDENTITY CASCADE")
+
+
+# uid 0 ,title 1,synopsis 2,genre 3,aired 4,episodes 5,members 6,popularity 7,ranked 8,score 9,img_url 10,link 11
 with open("data/animes.csv") as csvfile:
     reader = csv.reader(csvfile, delimiter=',', quotechar='"')
     i = 0
@@ -34,31 +40,68 @@ with open("data/animes.csv") as csvfile:
         if i==1:
             continue
         
-        # uid 0 ,title 1,synopsis 2,genre 3,aired 4,episodes 5,members 6,popularity 7,ranked 8,score 9,img_url 10,link 11
+        # -------------
+        # Entidad Anime
+        # -------------
         
-        anime_id = int(row[0].strip().strip('"').strip('\''))
+        id_anime = int(row[0].strip().strip('"').strip('\''))
 
         titulo = row[1].strip().strip('"').strip('\'')
 
         sinopsis = row[2].strip().strip('"').strip('\'')
 
         intervalo_emision = row[4].strip().strip('"').split("to")
-        for i in range(len(intervalo_emision)):
-            intervalo_emision[i] = intervalo_emision[i].strip()
-
-        inicio_emision = intervalo_emision[1]
-        termino_emision = "hoy"
-        if len(intervalo_emision > 1): termino_emision = intervalo_emision[1]
 
         episodios = int(float(row[5].strip().strip('"')))
 
         miembros = int(row[6].strip().strip('"'))
 
-        popularidad = int(row[7].strip().strip('"'))
+        popularidad = float(row[7].strip().strip('"'))
 
         ranking = int(row[8].strip().strip('"'))
         
-        puntuacion_anime = int(row[8].strip().strip('"'))
+        puntuacion_anime = float(row[8].strip().strip('"'))
+        
+        # --------------
+        # Entidad Genero
+        # --------------
+
+        generos = row[3].strip().strip('[').strip(']').split()
+        
+        # --------------
+        # Tabla Anime
+        # --------------
+        cur.execute("INSERT INTO Anime (id_anime,\
+                                        titulo,\
+                                        sinopsis,\
+                                        intervalo_emision,\
+                                        episodios,\
+                                        miembros,\
+                                        popularidad,\
+                                        ranking,\
+                                        puntuacion_anime)\
+                                        VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",
+                                        [id_anime,
+                                         titulo,
+                                         sinopsis,
+                                         intervalo_emision,
+                                         episodios,
+                                         miembros,
+                                         popularidad,
+                                         ranking,
+                                         puntuacion_anime])
+        cur.execute("")
+
+        # --------------
+        # Tabla Genero
+        # --------------
+
+        # --------------
+        # Tabla Tipo
+        # --------------
+
+
+
 
 conn.commit()
 conn.close()
