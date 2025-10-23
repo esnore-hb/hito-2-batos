@@ -1,6 +1,6 @@
 create table Anime(
     id_anime int primary key,
-    titulo varchar(255) ,
+    titulo varchar(255) primary key,
     sinopsis varchar(512),
     inicio_emision date default null,
     termino_emision date default null,
