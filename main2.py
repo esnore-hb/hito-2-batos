@@ -38,6 +38,15 @@ with open("/data/rewiews.csv") as csvfile:
 
     # Filtrado de elementos
 
-    id_review = int(row[0].strip().strip('"').strip('\''))
+    id_review = int(row[0].strip().strip('"').strip("'"))
 
-    puntuacion = 
+    puntuacion = row[4].strip().strip('"').strip("'")
+
+    cur.execute(
+            "INSERT INTO Reviews (id_review, puntuacion) VALUES (%s, %s)",
+            (id_review, puntuacion)
+        )
+    
+
+conn.commit()
+conn.close()
