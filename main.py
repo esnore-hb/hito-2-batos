@@ -49,7 +49,7 @@ with open("data/animes.csv") as csvfile:
 
         sinopsis = row[2].strip().strip('"').strip('\'')
 
-        intervalo_emision = row[4].strip().strip('"').split("to")
+        intervalo_emision = row[4].strip().strip('"')
 
         episodios = int(float(row[5].strip().strip('"')))
 
@@ -57,7 +57,7 @@ with open("data/animes.csv") as csvfile:
 
         popularidad = float(row[7].strip().strip('"'))
 
-        ranking = int(row[8].strip().strip('"'))
+        ranking = int(float(row[8].strip().strip('"')))
         
         puntuacion_anime = float(row[8].strip().strip('"'))
         
@@ -72,7 +72,7 @@ with open("data/animes.csv") as csvfile:
         # --------------
         cur.execute("INSERT INTO Anime \
             (id_anime, titulo, sinopsis, intervalo_emision, episodios, miembros, popularidad, ranking, puntuacion_anime) \
-            VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)",
             [id_anime, titulo, sinopsis, intervalo_emision, episodios, miembros, popularidad, ranking, puntuacion_anime])
 
 
