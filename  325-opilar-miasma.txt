@@ -12,3 +12,11 @@ scp -P 323 c3201@cc3201.dcc.uchile.cl:/home/cc3201/remote.txt /local/carpeta/
 https://wiki.dcc.uchile.cl/cc3201/doku.php?id=proyecto:acceso_al_servidor
 https://wiki.dcc.uchile.cl/cc3201/doku.php?id=proyecto:configurar_postgres
 https://wiki.dcc.uchile.cl/cc3201/doku.php?id=proyecto:conexion_externa
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+como actualizo mi rama si de una rama, hago branch, hago cambios, pero la rama original de la que me separe tiene nuevos cambios
+a medida que trabaje en mi rama:
+
+https://stackoverflow.com/questions/26137852/how-to-update-my-working-git-branch-from-another-branch-develop
