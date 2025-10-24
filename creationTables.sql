@@ -29,11 +29,11 @@ create table Usuario(
     cumpleanhos varchar(8)
 );
 
-create table Favoritos(
-    nombre_perfil varchar(255),
-    id_anime int,
-    foreign key (nombre_perfil) references Usuario(nombre_perfil),
-    foreign key (id_anime) references Anime(id_anime)
+CREATE TABLE favoritos (
+    u_nombre_perfil VARCHAR(255),
+    a_id_anime INT,
+    FOREIGN KEY (u_nombre_perfil) REFERENCES Usuario(nombre_perfil),
+    FOREIGN KEY (a_id_anime) REFERENCES Anime(id_anime)
 );
 
 create table Reviews(
