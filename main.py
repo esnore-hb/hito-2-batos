@@ -1,5 +1,4 @@
 import psycopg2
-import psycopg2.extras
 import csv
 import re
 
@@ -71,26 +70,11 @@ with open("data/animes.csv") as csvfile:
         # --------------
         # Tabla Anime
         # --------------
-        cur.execute("INSERT INTO Anime (id_anime,\
-                                        titulo,\
-                                        sinopsis,\
-                                        intervalo_emision,\
-                                        episodios,\
-                                        miembros,\
-                                        popularidad,\
-                                        ranking,\
-                                        puntuacion_anime)\
-                                        VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",
-                                        [id_anime,
-                                         titulo,
-                                         sinopsis,
-                                         intervalo_emision,
-                                         episodios,
-                                         miembros,
-                                         popularidad,
-                                         ranking,
-                                         puntuacion_anime])
-        cur.execute("")
+        cur.execute("INSERT INTO Anime \
+            (id_anime, titulo, sinopsis, intervalo_emision, episodios, miembros, popularidad, ranking, puntuacion_anime) \
+            VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",
+            [id_anime, titulo, sinopsis, intervalo_emision, episodios, miembros, popularidad, ranking, puntuacion_anime])
+
 
         # --------------
         # Tabla Genero
