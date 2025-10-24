@@ -85,7 +85,6 @@ with open("data/animes.csv") as csvfile:
             VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)",
             [id_anime, titulo, sinopsis, intervalo_emision, episodios, miembros, popularidad, ranking, puntuacion_anime])
 
-        print("procesado:", i)
 
         # --------------
         # Tabla Genero
@@ -94,6 +93,10 @@ with open("data/animes.csv") as csvfile:
         # --------------
         # Tabla Tipo
         # --------------
+        
+        
+
+        print("procesado:", i)
 
 
 
