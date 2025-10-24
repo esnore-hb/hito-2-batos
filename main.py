@@ -47,19 +47,29 @@ with open("data/animes.csv") as csvfile:
 
         titulo = row[1].strip().strip('"').strip('\'')
 
-        sinopsis = row[2].strip().strip('"').strip('\'')
+        sinopsis = row[2].strip().strip('"').strip('\'')[:512]
 
         intervalo_emision = row[4].strip().strip('"')
 
-        episodios = int(float(row[5].strip().strip('"')))
+        try:
+            episodios = int(float(row[5].strip().strip('"')))
+        except ValueError:
+            episodios = 0
+
 
         miembros = int(row[6].strip().strip('"'))
 
         popularidad = float(row[7].strip().strip('"'))
 
-        ranking = int(float(row[8].strip().strip('"')))
+        try:
+            ranking = int(float(row[8].strip().strip('"')))
+        except ValueError:
+            ranking = 0
         
-        puntuacion_anime = float(row[8].strip().strip('"'))
+        try:
+            puntuacion_anime = float(row[8].strip().strip('"'))
+        except ValueError:
+            puntuacion_anime = 0
         
         # --------------
         # Entidad Genero
@@ -75,6 +85,7 @@ with open("data/animes.csv") as csvfile:
             VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)",
             [id_anime, titulo, sinopsis, intervalo_emision, episodios, miembros, popularidad, ranking, puntuacion_anime])
 
+        print("procesado:", i)
 
         # --------------
         # Tabla Genero
