@@ -74,27 +74,47 @@ with open("data/animes.csv") as csvfile:
         # --------------
         # Entidad Genero
         # --------------
-
-        generos = row[3].strip().strip('[').strip(']').split()
+        generos = row[3].strip().strip('[').strip(']').split(",")
+        generos = [x.strip().strip('\'').strip('"') for x in generos]
         
         # --------------
         # Tabla Anime
         # --------------
-        cur.execute("INSERT INTO Anime \
-            (id_anime, titulo, sinopsis, intervalo_emision, episodios, miembros, popularidad, ranking, puntuacion_anime) \
-            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)",
-            [id_anime, titulo, sinopsis, intervalo_emision, episodios, miembros, popularidad, ranking, puntuacion_anime])
-
+        cur.execute("SELECT id_anime FROM Anime WHERE id_anime=%s limit 1", [id_anime])
+        r = cur.fetchone()
+        if(r): pass
+        else:
+            cur.execute("INSERT INTO Anime \
+                (id_anime, titulo, sinopsis, intervalo_emision, episodios, miembros, popularidad, ranking, puntuacion_anime) \
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)",
+                [id_anime, titulo, sinopsis, intervalo_emision, episodios, miembros, popularidad, ranking, puntuacion_anime])
+ 
 
         # --------------
         # Tabla Genero
         # --------------
-
+        for genero in generos:
+            cur.execute("SELECT genero FROM Genero WHERE categoria=%s limit 1", [genero])
+            r = cur.fetchone()
+            if(r): pass
+            else:
+                cur.execute("INSERT INTO Genero \
+                    (categoria)\
+                    VALUES (%s)",
+                    [genero])
+        
         # --------------
         # Tabla Tipo
         # --------------
-        
-        
+        for genero in generos:
+            cur.execute("SELECT id_anime, categoria FROM Tipo WHERE id_anime=%s AND categoria=%s limit 1", [id_anime, genero])
+            r = cur.fetchone()
+            if(r): pass
+            else:
+                cur.execute("INSERT INTO Tipo \
+                    (id_anime, categoria)\
+                    VALUES (%s, %s)",
+                    [id_anime, genero])
 
         print("procesado:", i)
 
