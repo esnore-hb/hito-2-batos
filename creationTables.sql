@@ -54,8 +54,9 @@ create table Escribe(
     foreign key nombre_perfil references Reviews(nombre_perfil)
 )
 
-create table Calificacion(
-    nombre varchar(64) primary key,
-    valor int default 0,
-    id_review int not null,
-)
+CREATE TABLE calificacion (
+    nombre VARCHAR(64) PRIMARY KEY,
+    valor DOUBLE PRECISION DEFAULT 0,
+    id_review INT NOT NULL
+);
+
