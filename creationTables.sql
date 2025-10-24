@@ -1,14 +1,15 @@
 create table Anime(
-    id_anime int primary key,
-    titulo varchar(255) primary key,
+    id_anime int,
+    titulo varchar(255),
     sinopsis varchar(512),
     intervalo_emision varchar(32) default null,
     episodios int,
     miembros int,
     popularidad double precision default 0,
     ranking int,
-    puntuacion_anime double precision default 0
-)
+    puntuacion_anime double precision default 0,
+    primary key (id_anime, titulo, ranking, puntuacion_anime)
+);
 
 create table Genero(
     categoria varchar(64) primary key
