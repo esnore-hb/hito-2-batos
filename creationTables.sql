@@ -8,19 +8,20 @@ create table Anime(
     popularidad double precision default 0,
     ranking int,
     puntuacion_anime double precision default 0,
-    primary key (id_anime, titulo, ranking, puntuacion_anime)
+    primary key (id_anime)
 );
 
 create table Genero(
     categoria varchar(64) primary key
-)
+);
 
 create table Tipo(
     id_anime int,
-    categoria varchar(64)
-    foreign key id_anime references Anime(id_anime),
-    foreign key categoria references Genero(categoria)
-)
+    categoria varchar(64),
+    primary key (id_anime, categoria),
+    foreign key (id_anime) references Anime(id_anime),
+    foreign key (categoria) references Genero(categoria)
+);
 
 create table Usuario(
     nombre_perfil varchar(255) primary key not null,
