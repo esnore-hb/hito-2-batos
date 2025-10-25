@@ -39,21 +39,21 @@ CREATE TABLE favoritos (
 create table Reviews(
     id_review int not null primary key,
     puntuacion double precision default 0,
-)
+);
 
 create table Recibe(
     id_anime int,
     id_review int,
-    foreign key id_anime references Anime(id_anime),
-    foreign key id_review references Reviews(id_review)
-)
+    foreign key (id_anime) references Anime(id_anime),
+    foreign key (id_review) references Reviews(id_review)
+);
 
 create table Escribe(
     id_review int not null,
     nombre_perfil varchar(255),
-    foreign key id_anime references Reviews(id_review),
-    foreign key nombre_perfil references Reviews(nombre_perfil)
-)
+    foreign key (id_review) references Reviews(id_review),
+    foreign key (nombre_perfil) references Usuario(nombre_perfil)
+);
 
 CREATE TABLE calificacion (
     nombre VARCHAR(64) PRIMARY KEY,
