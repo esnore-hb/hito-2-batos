@@ -48,7 +48,6 @@ with open("data/reviews.csv") as csvfile:
 
         print("procesado:", i)
         
-        if i == 1081: break
 
 conn.commit()
 conn.close()
